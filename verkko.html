@@ -1,0 +1,128 @@
+<!-- tee nettikaupan rekisteröitymislomake (nettikauppa.html), jossa on seuraavat kentät:
+yhteystiedot: nimi, katuosoite, postinumero, postitoimipaikka, puhelinnumero ja sähköpostiosoite (jokaiselle oma tekstikenttä)
+salasana (salasanakenttä)
+”Mistä osastoista olet kiinnostunut?” (Muoti, Urheilu, Sisustaminen, Pelit, Elokuvat - valintaruutu, joista voi valita useamman)
+Maksutapa (Sampo, Nordea, Osuuspankki, Aktia - pudotusvalikkona)
+”Anna palautetta.” (4-rivinen tekstialue)
+”Olen lukenut ja hyväksyn tuotteiden toimitusehdot.” (Kyllä / ei - radiopainike)
+Lähetyspainike -->
+
+<html>
+	<head>
+		<title>verkkis</title>
+	</head>
+	<style>
+	#register {
+		width:60%;
+		margin:0 auto;
+		font-family:Verdana, Geneva, sans-serif;
+		color:#585;
+		color:#3354FF;
+		font-size:12;
+	}
+	form {
+		border: solid 2px #cec;
+		padding:5%;
+		background-color:#eee;
+		
+	}
+	input[type="text"], input[type="password"], #maksu {
+		margin-top:3px;
+		padding:1px 1px 1px 5px;
+		width:100%;
+		border:solid 1px #cec;
+		
+	}
+	
+	input[type="submit"] {
+		margin-top:25px;
+		width:100%;
+		height:30px;
+		background-color: #585;
+		color:#fff;
+	}
+	textarea {
+		border:solid 1px #cec;
+		
+		}
+	#osastot {
+		border:solid 1px #cec;
+		
+		overflow: hidden;
+		margin-left:3px;
+		width:99%;
+		font-family:Verdana, Geneva, sans-serif;
+		font-size:12;
+		color:#444;
+	}
+	h1 {
+		text-align: center
+	}
+	</style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+        var timer;    
+        function halytys(teksti) {
+            console.log(teksti);
+            document.getElementById('tiedote').innerHTML = teksti;
+            alert(teksti+',onsubmit-tapahtuma');
+            return false;
+            }      
+            
+            function keyup(el){
+            clearTimeout(timer);    
+            timer = setTimeout(function(){alert(el.value);},2000);
+             }          
+             
+           function klikki(){
+             alert('Hei,onclick-tapahtuma!');
+             }    
+           
+            function muutos(el){
+             var values = $(el).val();   
+             console.log('muutos:'+values);
+             alert(values+',onchange-tapahtuma!');
+             }     
+        </script>    
+        
+	<body>
+
+		<div id="register">
+		<h1>Rekisteristeröinti</h1>
+		<form onsubmit="return halytys('Hei');">
+			<input type="text" name="nimi" placeholder="Nimi">
+			<input type="text" name="os" placeholder="Katuosoite">
+                        <label>Postitoimipaikka</label>
+			<input onkeyup="keyup(this);" type="text" name="pp" placeholder="Postitoimipaikka">
+			<input type="text" name="pnro" placeholder="Postinumero">
+			<input type="text" name="puh" placeholder="Puhnro">
+			<input type="text" name="maili" placeholder="Sähköposti">
+			<br><br>
+			<span style="text-align: right">Salasana:</span>
+			<input type="password" name="pswd">
+			<br><br>
+			Mistä osastoista olet kiinnostunut?<br>
+                        <select onchange="muutos(this);" multiple id="osastot" size="5">
+				<option value="1">Muoti</option>
+				<option value="2">Urheilu</option>
+				<option value="3">Sisustaminen</option>
+				<option value="4">Pelit</option>
+				<option value="5">Elokuvat</option>
+			</select>
+			<br><br>
+			Maksutapa:
+			<select id="maksu" name=”maksutapa”>
+				<option>Sampo</option>
+				<option>Nordea</option>
+				<option>Osuuspankki</option>
+			</select>
+			<br><br>
+			Anna palautetta:
+			<textarea rows="4" style="width:100%;"></textarea>
+                        <input type="checkbox" name="toimitusehdot">
+			Olen lukenut ja hyväksyn tuotteiden toimitusehdot.
+			<input onclick="klikki();" type="submit" value="Lähetä"></form>
+		</div>
+            <div id="tiedote"></div>
+	</body>
+</html>
