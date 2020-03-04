@@ -124,11 +124,39 @@ if ($error_required or $error_numeric){
     echo "<script>document.forms['error_form'].submit();</script>";
     }
   }
-$db = new mysqli('localhost','root','','sakila');
-if (mysqli_connect_errno()){
-  palaute($ajax,"Virhe tietokantayhteydessä.");
+
+$local = in_array($_SERVER['REMOTE_ADDR'],array('127.0.0.1','REMOTE_ADDR' => '::1'));
+debuggeri("local:$local");	
+if (!$local) {	
+  $password = "6#vWHD_$";
+  $user = "azure";
+  //$server = "localhost:49492";
+  $server = "localhost:50431";
+  }
+else {
+  $password = "";
+  $user = "root";
+  $server = "localhost";	
+  }
+//echo "server:$server,user:$user";
+//exit;
+
+try {
+  $db = new mysqli($server,$user,$password,'sakila');
+  if (mysqli_connect_errno()){  
+    throw new Exception("Virhe tietokantayhteydessä", 42);
+    }
+  }
+catch (Exception $e) {
+  if (defined('DEBUG') and DEBUG)  
+    echo "Poikkeus ".$e->getCode().": ".$e->getMessage()." ".
+    "rivillä ". $e->getLine().", tiedosto: ".$e->getFile()."<br />";
+  else echo "Virhe tietokantayhteydessä. Yritä hetken päästä uudestaan.<br>";
   exit;
-  }  
+  }
+  
+
+
 /*
 $query = "SELECT f.title,c.name FROM film f,film_category fc,category c WHERE
           fc.film_id = f.film_id AND c.category_id = fc.category_id AND f.title LIKE 'A%'";

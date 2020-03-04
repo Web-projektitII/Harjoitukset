@@ -536,7 +536,7 @@ while ($row = $result->fetch_assoc()){
 <div class="form-group row">
 <label class="control-label col-sm-2">Vuokrahinta:</label><span class="<?php virhe('rental_rate');?>">*</span>
 <div class="col-sm-10">
-<input required pattern="^\d+(,\d{1,2}){0,1}$" class="form-control lukema" type="text" name="rental_rate" value="<?php nayta('rental_rate');?>"><span class="yksikko">€</span><br>
+<input required pattern="^\d\d?(,\d{1,2})?$" class="form-control lukema" type="text" name="rental_rate" value="<?php nayta('rental_rate');?>"><span class="yksikko">€</span><br>
 <div class="invalid-feedback">Lisää vuokrahinta.</div>   
 <?php server_validation('rental_rate');?>
 </div></div>
@@ -550,7 +550,7 @@ while ($row = $result->fetch_assoc()){
 <div class="form-group row">
 <label class="control-label col-sm-2">Korvaushinta:</label><span class="<?php virhe('replacement_cost');?>">*</span>
 <div class="col-sm-10">
-<input required pattern="^\d\d?(,\d{1,2})?$" class="form-control lukema" type="text" name="replacement_cost"><span class="yksikko">€</span><br>
+<input required pattern="^\d{1,3}(,\d{1,2})?$" class="form-control lukema" type="text" name="replacement_cost"><span class="yksikko">€</span><br>
 <div class="invalid-feedback">Lisää korvaushinta.</div>  
 <?php server_validation('replacement_cost');?>
 </div></div>
