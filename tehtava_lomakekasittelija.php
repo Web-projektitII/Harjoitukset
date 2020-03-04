@@ -21,7 +21,7 @@ use PHPMailer\PHPMailer\Exception;
 $to = "jukka.aula@omnia.fi";
 
 function posti($emailTo,$msg,$subject){
-if (file_exists('../../tunnukset.php')) include('../../tunnukset.php');  
+if (file_exists('../t/tunnukset.php')) include('../t/tunnukset.php');  
 else {
   debuggeri(__FUNCTION__.",virhe:tiedostoa tunnukset.php ei löydy. Sähköpostia ei voi lähettää.");
   return false;	
