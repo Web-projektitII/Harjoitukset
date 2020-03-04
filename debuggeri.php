@@ -2,6 +2,8 @@
 /* 
  * To change this license header, choose License Headers in Project Properties.
  */
+date_default_timezone_set ("Europe/Helsinki");
+
 function debug_error_handler($errno,$errstr,$errfile,$errline){
     if (!(error_reporting() & $errno)) {
         // This error code is not included in error_reporting, so let it fall
