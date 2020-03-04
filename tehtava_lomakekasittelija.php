@@ -7,9 +7,13 @@
    lomakkeella selaimelle, joka lähettää sen javascript-komennolla edelleen lomakesivulle.
 */
 include('debuggeri.php');
-require 'Exception.php';
-require 'PHPMailer.php';
-require 'SMTP.php';
+define('DEBUG',true);
+if (file_exists('Exception.php')) require 'Exception.php';
+else debuggeri("Virhe:tiedostoa Exception.php ei löydy.");
+if (file_exists('PHPMailer.php')) require 'PHPMailer.php';
+else debuggeri("Virhe:tiedostoa PHPMailer.php ei löydy.");
+if (file_exists('SMTP.php')) require 'SMTP.php';
+else debuggeri("Virhe:tiedostoa SMTP.php ei löydy.");
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -17,7 +21,11 @@ use PHPMailer\PHPMailer\Exception;
 $to = "jukka.aula@omnia.fi";
 
 function posti($emailTo,$msg,$subject){
-include('../../tunnukset.php');   
+if (file_exists('../../tunnukset.php')) include('../../tunnukset.php');  
+else {
+  debuggeri(__FUNCTION__.",virhe:tiedostoa tunnukset.php ei löydy. Sähköpostia ei voi lähettää.");
+  return false;	
+  }		
 $emailFrom = "omniakurssi@email.com";
 $emailFromName = "Ohjelmointikurssi";
 $emailToName = "";
