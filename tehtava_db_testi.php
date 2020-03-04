@@ -392,7 +392,8 @@ debuggeri("local:$local");
 if (!$local) {	
   $password = "6#vWHD_$";
   $user = "azure";
-  $server = "localhost:49492";
+  //$server = "localhost:49492";
+  $server = "localhost:50431";	
   }
 else {
   $password = "";
