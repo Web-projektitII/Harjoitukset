@@ -515,7 +515,7 @@ while ($row = $result->fetch_assoc()){
 <div class="form-group row">
 <label class="control-label col-sm-2">Julkaisuvuosi:</label><span class="<?php virhe('release_year');?>">*</span>
 <div class="col-sm-10">
-<input required class="form-control lukema" min="1900" max="2100" type="number" name="release_year" placeholder="2019" value="<?php nayta('release_year');?>">
+<input required class="form-control lukema" min="1901" max="2155" type="number" name="release_year" placeholder="2019" value="<?php nayta('release_year');?>">
 <div class="invalid-feedback">Lisää julkaisuvuosi.</div>
 <?php server_validation('release_year');?>
 </div></div>
@@ -529,7 +529,7 @@ while ($row = $result->fetch_assoc()){
 <div class="form-group row">
 <label class="control-label col-sm-2">Vuokra-aika:</label><span class="<?php virhe('rental_duration');?>">*</span>
 <div class="col-sm-10">
-<input required class="form-control lukema" type="number" max="365" name="rental_duration" placeholder="1" value="<?php nayta('rental_duration');?>"><span class="yksikko">pv</span><br>
+<input required class="form-control lukema" type="number" min="1" max="365" name="rental_duration" placeholder="1" value="<?php nayta('rental_duration');?>"><span class="yksikko">pv</span><br>
 <div class="invalid-feedback">Lisää vuokra-aika.</div>  
 <?php server_validation('rental_duration');?>
 </div></div>
@@ -543,14 +543,14 @@ while ($row = $result->fetch_assoc()){
 <div class="form-group row">
 <label class="control-label col-sm-2">Pituus:</label><span class="<?php virhe('length');?>">*</span>
 <div class="col-sm-10">
-<input required class="form-control lukema" type="number" name="length"><span class="yksikko">min</span><br>
+<input required class="form-control lukema" type="number" min="1" max="999" name="length"><span class="yksikko">min</span><br>
 <div class="invalid-feedback">Lisää pituus.</div>  
 <?php server_validation('length');?>
 </div></div>
 <div class="form-group row">
 <label class="control-label col-sm-2">Korvaushinta:</label><span class="<?php virhe('replacement_cost');?>">*</span>
 <div class="col-sm-10">
-<input required pattern="^\d+(,\d{1,2}){0,1}$" class="form-control lukema" type="text" name="replacement_cost"><span class="yksikko">€</span><br>
+<input required pattern="^\d\d?(,\d{1,2})?$" class="form-control lukema" type="text" name="replacement_cost"><span class="yksikko">€</span><br>
 <div class="invalid-feedback">Lisää korvaushinta.</div>  
 <?php server_validation('replacement_cost');?>
 </div></div>
