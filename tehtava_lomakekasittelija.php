@@ -8,6 +8,7 @@
 */
 include('debuggeri.php');
 define('DEBUG',true);
+date_default_timezone_set ("Europe/Helsinki");
 if (file_exists('Exception.php')) require 'Exception.php';
 else debuggeri("Virhe:tiedostoa Exception.php ei löydy.");
 if (file_exists('PHPMailer.php')) require 'PHPMailer.php';
@@ -92,7 +93,7 @@ if ($error_required or $error_numeric){
      */  
     //$virheet = array_merge(array_keys($error_required),array_keys($error_numeric));
     $virheet = array_merge($error_required,$error_numeric);
-       if ($virheet) {
+      if ($virheet) {
       echo json_encode($virheet);
       exit;
       }
