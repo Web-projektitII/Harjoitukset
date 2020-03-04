@@ -139,6 +139,7 @@ function piilotaVirheet(){
             data = JSON.parse(data);
             //var tyyppi = typeof data;
             //console.log("data parsed:"+data+",tyyppi:"+tyyppi);
+	    //if (typeof data == 'object') {	  
             if (data instanceof Object){
               for(var key in data){
                 console.log(`${key}: ${data[key]}`);  
