@@ -391,7 +391,8 @@ $local = in_array($_SERVER['REMOTE_ADDR'],array('127.0.0.1','REMOTE_ADDR' => '::
 if (!$local) {	
   $password = "6#vWHD_$";
   $user = "azure";
-  $server = "localhost:49492";
+  //$server = "localhost:49492";
+  $server = "localhost:50431";
   }
 else {
   $password = "";
