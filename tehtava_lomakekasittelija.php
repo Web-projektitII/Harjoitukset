@@ -8,7 +8,6 @@
 */
 include('debuggeri.php');
 define('DEBUG',true);
-date_default_timezone_set ("Europe/Helsinki");
 if (file_exists('Exception.php')) require 'Exception.php';
 else debuggeri("Virhe:tiedostoa Exception.php ei löydy.");
 if (file_exists('PHPMailer.php')) require 'PHPMailer.php';
